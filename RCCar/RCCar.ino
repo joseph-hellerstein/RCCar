@@ -9,6 +9,7 @@ the L293D chip
 #include <stdlib.h>
 #include <time.h>
 #include "SR04.h"
+#include "ultra_sonic.h"
 
 
 // Bluetooth pins
@@ -33,9 +34,9 @@ the L293D chip
 #define CMD_STOP 's'
 
 #define REPORT_MILLIS 1000
-#define CM_PER_INCH 2.54
+// #define CM_PER_INCH 2.54
 
-#define DISTANCE_MIN 6  // Minimum distance from obstacle
+// #define DISTANCE_MIN 6  // Minimum distance from obstacle
 
 char inputByte;
 long distance_fr;
@@ -51,6 +52,7 @@ SR04 sr04_fr = SR04(ECHO_FR_PIN,TRIG_FR_PIN);
 int i;
 int direction = 0;  // -1 backwards; +1 forwards
 
+/*
 // Encapsulates the UltraSonic sensor
 class UltraSonic {
   
@@ -102,6 +104,7 @@ class UltraSonic {
         
       }
 };
+*/
 
 UltraSonic back_sensor = UltraSonic(ECHO_BK_PIN, TRIG_BK_PIN);
 UltraSonic front_sensor = UltraSonic(ECHO_FR_PIN, TRIG_FR_PIN);
@@ -128,7 +131,7 @@ void backward() {
   digitalWrite(R_DIRB,HIGH);
 }
 
-void reverse(): {
+void reverse() {
   if (direction < 0) {
       forward();
     }

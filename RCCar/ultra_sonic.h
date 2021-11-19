@@ -7,19 +7,21 @@
 #define ultra_sonic_h
 
 #include "Arduino.h"
+#include "SR04.h"
 
 class UltraSonic {
   private:
       long last_distance;  // inches
       long last_time;  // Time in ms
       float speed;  // inches / ms
-      SR04 sr04;
+      SR04 sr04 = SR04(0, 0);
       int echo_pin;
       int trig_pin;
   public:
       UltraSonic(int echo_pin, int trig_pin);
       void init();
       void update();
+      long getDistance();
       bool isTooClose();
       float getSpeed();
 };

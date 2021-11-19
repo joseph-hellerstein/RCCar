@@ -4,6 +4,9 @@
 #include <time.h>
 #include "SR04.h"
 
+#define CM_PER_INCH 2.54
+#define DISTANCE_MIN 6
+
 
 // Constructor
 UltraSonic::UltraSonic(int echo_pin, int trig_pin) {
@@ -16,7 +19,7 @@ void UltraSonic::init() {
   // Initialize the object
   pinMode(this->echo_pin, INPUT);
   pinMode(this->trig_pin, OUTPUT);
-  this->sr04 = SR04(echo_pin, trig_pin);
+  this->sr04 = SR04::SR04(echo_pin, trig_pin);
   delay(100);  // Wait for SR04 setup
   this->last_distance = this->sr04.Distance() / CM_PER_INCH;
   this->last_time = millis();
