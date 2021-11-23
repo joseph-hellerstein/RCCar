@@ -19,16 +19,20 @@ void UltraSonic::init() {
   // Initialize the object
   pinMode(this->echo_pin, INPUT);
   pinMode(this->trig_pin, OUTPUT);
-  this->sr04 = SR04::SR04(echo_pin, trig_pin);
-  delay(100);  // Wait for SR04 setup
-  this->last_distance = this->sr04.Distance() / CM_PER_INCH;
+  this->sr04 = new SR04(echo_pin, trig_pin);
+  delay(100);
+  this->last_distance = this->getCurrentDistance();
   this->last_time = millis();
-}   
+}
+
+long UltraSonic::getCurrentDistance() {
+  return this->sr04->Distance() / CM_PER_INCH;
+}
 
 // Update the sensor
 void UltraSonic::update() {
   long cur_time = millis() - this->last_time;
-  long cur_distance = this->sr04.Distance() / CM_PER_INCH;
+  long cur_distance = this->getCurrentDistance();
   this->speed = (cur_distance - this->last_distance) / (cur_time - this->last_time);
   this->last_distance = cur_distance;
   this->last_time = cur_time;
