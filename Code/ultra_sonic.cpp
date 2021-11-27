@@ -1,8 +1,8 @@
 #include "Arduino.h"
-#include "ultra_sonic.h"
+//#include "ultra_sonic.h"
 #include <stdlib.h>
 #include <time.h>
-#include "SR04.h"
+//#include "SR04.h"
 
 #define CM_PER_INCH 2.54
 #define DISTANCE_MIN 6
@@ -12,7 +12,7 @@
 UltraSonic::UltraSonic(int echo_pin, int trig_pin) {
   this->echo_pin = echo_pin;
   this->trig_pin = trig_pin;
-}   
+};
 
 // Initialize the sensor
 void UltraSonic::init() {
