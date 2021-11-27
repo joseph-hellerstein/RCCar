@@ -18,23 +18,31 @@ the L293D chip
 // Ultra sonic pins. Front and back sensors.
 #define TRIG_BK_PIN 12
 #define ECHO_BK_PIN 13
-#define TRIG_FR_PIN 22
-#define ECHO_FR_PIN 23
+#define TRIG_FFR_PIN 22
+#define ECHO_FFR_PIN 23
 
-#define L_DIRA 3
-#define L_DIRB 4
-#define L_ENABLE 5
+#define FL_DIRA 3
+#define FL_DIRB 4
+#define FL_ENABLE 5
 
-#define R_DIRA 8
-#define R_DIRB 9
-#define R_ENABLE 10
+#define FR_DIRA 8
+#define FR_DIRB 9
+#define FR_ENABLE 10
+
+#define BL_DIRA 29
+#define BL_DIRB 26
+#define BL_ENABLE 27
+
+#define BR_DIRA 31
+#define BR_DIRB 30
+#define BR_ENABLE 33
 
 #define CMD_FORWARD 'f'
 #define CMD_BACK 'b'
 #define CMD_STOP 's'
 
 #define REPORT_MILLIS 1000
-// #define CM_PER_INCH 2.54
+// #define CM_PEFR_INCH 2.54
 
 // #define DISTANCE_MIN 6  // Minimum distance from obstacle
 
@@ -45,7 +53,7 @@ long last_report_time;
 
 SoftwareSerial mySerial(rxPin, txPin); // RX, TX
 SR04 sr04_bk = SR04(ECHO_BK_PIN,TRIG_BK_PIN);
-SR04 sr04_fr = SR04(ECHO_FR_PIN,TRIG_FR_PIN);
+SR04 sr04_fr = SR04(ECHO_FFR_PIN,TRIG_FFR_PIN);
 
 
 
@@ -77,16 +85,16 @@ class UltraSonic {
         pinMode(this->trig_pin, OUTPUT);
         this->sr04 = SR04(echo_pin, trig_pin);
         delay(100);  // Wait for SR04 setup
-        this->last_distance = this->sr04.Distance() / CM_PER_INCH;
+        this->last_distance = this->sr04.Distance() / CM_PEFR_INCH;
         this->last_time = millis();
       }
       // Update the sensor
       void update() {
-        long cur_time = millis() - this->last_time;
-        long cur_distance = this->sr04.Distance() / CM_PER_INCH;
-        this->speed = (cur_distance - this->last_distance) / (cur_time - this->last_time);
-        this->last_distance = cur_distance;
-        this->last_time = cur_time;
+        long cuFR_time = millis() - this->last_time;
+        long cuFR_distance = this->sr04.Distance() / CM_PEFR_INCH;
+        this->speed = (cuFR_distance - this->last_distance) / (cuFR_time - this->last_time);
+        this->last_distance = cuFR_distance;
+        this->last_time = cuFR_time;
       }
       // Determine if too close
       bool isTooClose() {
@@ -107,28 +115,47 @@ class UltraSonic {
 */
 
 UltraSonic back_sensor = UltraSonic(ECHO_BK_PIN, TRIG_BK_PIN);
-UltraSonic front_sensor = UltraSonic(ECHO_FR_PIN, TRIG_FR_PIN);
+UltraSonic front_sensor = UltraSonic(ECHO_FFR_PIN, TRIG_FFR_PIN);
 
 void forward() {
    Serial.println("Forward!");
    direction  = 1;
-   digitalWrite(L_ENABLE,HIGH); // enable on
-   digitalWrite(L_DIRA,HIGH); //one way
-   digitalWrite(L_DIRB,LOW);
-   digitalWrite(R_ENABLE,HIGH); // enable on
-   digitalWrite(R_DIRA,HIGH); //one way
-   digitalWrite(R_DIRB,LOW);
+   digitalWrite(FL_ENABLE,HIGH); // enable on
+   digitalWrite(FL_DIRA,HIGH); //one way
+   digitalWrite(FL_DIRB,LOW);
+   digitalWrite(FR_ENABLE,HIGH); // enable on
+   digitalWrite(FR_DIRA,HIGH); //one way
+   digitalWrite(FR_DIRB,LOW);
+   digitalWrite(BL_ENABLE,HIGH); // enable on
+   digitalWrite(BL_DIRA,HIGH); //one way
+   digitalWrite(BL_DIRB,LOW);
+   digitalWrite(BR_ENABLE,HIGH); // enable on
+   digitalWrite(BR_DIRA,HIGH); //one way
+   digitalWrite(BR_DIRB,LOW);
 }
 
 void backward() {
   direction = -1;
   Serial.println("Backwards!");
-  digitalWrite(L_ENABLE,HIGH); // enable on
-  digitalWrite(L_DIRA,LOW); //one way
-  digitalWrite(L_DIRB,HIGH);
-  digitalWrite(R_ENABLE,HIGH); // enable on
-  digitalWrite(R_DIRA,LOW); //one way
-  digitalWrite(R_DIRB,HIGH);
+  digitalWrite(FL_ENABLE,HIGH); // enable on
+  digitalWrite(FL_DIRA,LOW); //one way
+  digitalWrite(FL_DIRB,HIGH);
+  digitalWrite(FR_ENABLE,HIGH); // enable on
+  digitalWrite(FR_DIRA,LOW); //one way
+  digitalWrite(FR_DIRB,HIGH);
+  digitalWrite(BL_ENABLE,HIGH); // enable on
+  digitalWrite(BL_DIRA,LOW); //one way
+  digitalWrite(BL_DIRB,HIGH);
+  digitalWrite(BR_ENABLE,HIGH); // enable on
+  digitalWrite(BR_DIRA,LOW); //one way
+  digitalWrite(BR_DIRB,HIGH);
+}
+
+void stop() {
+  digitalWrite(FL_ENABLE,LOW); // enable off
+  digitalWrite(FR_ENABLE,LOW); // enable off
+  digitalWrite(BL_ENABLE,LOW); // enable off
+  digitalWrite(BR_ENABLE,LOW); // enable off
 }
 
 void reverse() {
@@ -143,14 +170,22 @@ void reverse() {
  
 void setup() {
   //---set pin direction
-  pinMode(L_DIRA,OUTPUT);
-  pinMode(L_DIRB,OUTPUT);
-  pinMode(L_ENABLE,OUTPUT);
-  analogWrite(L_ENABLE,255);
-  pinMode(R_DIRA,OUTPUT);
-  pinMode(R_DIRB,OUTPUT);
-  pinMode(R_ENABLE,OUTPUT);
-  analogWrite(R_ENABLE,255);
+  pinMode(FL_DIRA,OUTPUT);
+  pinMode(FL_DIRB,OUTPUT);
+  pinMode(FL_ENABLE,OUTPUT);
+  analogWrite(FL_ENABLE,255);
+  pinMode(FR_DIRA,OUTPUT);
+  pinMode(FR_DIRB,OUTPUT);
+  pinMode(FR_ENABLE,OUTPUT);
+  analogWrite(FR_ENABLE,255);
+  pinMode(BL_DIRA,OUTPUT);
+  pinMode(BL_DIRB,OUTPUT);
+  pinMode(BL_ENABLE,OUTPUT);
+  analogWrite(BL_ENABLE,255);
+  pinMode(BR_DIRA,OUTPUT);
+  pinMode(BR_DIRB,OUTPUT);
+  pinMode(BR_ENABLE,OUTPUT);
+  analogWrite(BR_ENABLE,255);
   Serial.begin(9600);
   mySerial.begin(9600);
   mySerial.println("Starting...");
@@ -161,8 +196,7 @@ void setup() {
 }
 
 void loop() {
-  // distance_fr = sr04_fr.Distance() / CM_PER_INCH;
-  //distance_bk = sr04_bk.Distance() / CM_PER_INCH;
+  Serial.println("loop start");
   front_sensor.update();
   back_sensor.update();
   if ((millis() - last_report_time) > REPORT_MILLIS) {
@@ -185,8 +219,7 @@ void loop() {
       }
       if (inputByte==CMD_STOP){
          Serial.println("Stop!");
-         digitalWrite(L_ENABLE,LOW); // enable off
-         digitalWrite(R_ENABLE,LOW); // enable off
+         stop();
          direction = 0;
       }
       if (inputByte==CMD_BACK){
