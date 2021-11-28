@@ -8,14 +8,16 @@ CXXFLAGS = -std=c++11 -Wall -Wextra -g
 LDFLAGS = 
 
 # Makefile settings - Can be customized.
-APPNAME = RCCar
+APPNAME = mock_RCCar
 EXT = .cpp
 SRCDIR = .
 OBJDIR = .
+LIBDIR = /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks
 
 ############## Do not change anything from here downwards! #############
 SRC = $(wildcard $(SRCDIR)/*$(EXT))
 OBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)/%.o)
+LIBOBJ = $(LIBDIR)/*.o
 DEP = $(OBJ:$(OBJDIR)/%.o=%.d)
 # UNIX-based OS variables & settings
 RM = rm
@@ -32,19 +34,21 @@ WDELOBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)\\%.o)
 all: $(APPNAME)
 
 # Builds the app
-$(APPNAME): $(OBJ)
-	$(CC) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+# -L: directory with object files
+# -I: directory with include files
+$(APPNAME): $(OBJ) $(LIBOBJ)
+	$(CC) $(CXXFLAGS) -o $@ $^ -I$(LIBDIR) -L$(LIBDIR) $(LDFLAGS)
 
 # Creates the dependecy rules
 %.d: $(SRCDIR)/%$(EXT)
 	@$(CPP) $(CFLAGS) $< -MM -MT $(@:%.d=$(OBJDIR)/%.o) >$@
 
 # Includes all .h files
--include $(DEP)
+#-include $(DEP)
 
 # Building rule for .o files and its .c/.cpp in combination with all .h
 $(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
-	$(CC) $(CXXFLAGS) -o $@ -c $<
+	$(CC) $(CXXFLAGS) -o $@ -c $< -I$(LIBDIR)
 
 ################### Cleaning rules for Unix-based OS ###################
 # Cleans complete project

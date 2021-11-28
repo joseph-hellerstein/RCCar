@@ -7,9 +7,7 @@
 #define ultra_sonic_h
 
 #include "Arduino.h"
-#ifndef arduino_mocks_h
 #include "SR04.h"
-#endif
 
 class UltraSonic {
   private:

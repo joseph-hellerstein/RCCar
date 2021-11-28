@@ -1,26 +1,7 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/josephhellerstein/home/Technical/Arduino/RCCar/Code'
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/josephhellerstein/home/Technical/Arduino/RCCar/RCCar'
+echo /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/*.o
+g++ -std=c++11 -Wall -Wextra -g -o mocks RCCar.o main.o ultra_sonic.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/Arduino.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SR04.o -I/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks -L/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks 
  
-ultra_sonic.cpp:6:10: fatal error: 'arduino_mocks.h' file not found
-#include "arduino_mocks.h"
-         ^~~~~~~~~~~~~~~~~
-1 error generated.
- 
-main.cpp:2:10: fatal error: 'arduino_mocks.h' file not found
-#include "arduino_mocks.h"
-         ^~~~~~~~~~~~~~~~~
- 
-1 error generated.
- 
-In file included from RCCar.cpp:10:
-./ultra_sonic.h:9:10: fatal error: 'Arduino.h' file not found
-#include "Arduino.h"
-         ^~~~~~~~~~~
-1 error generated.
- 
-g++ -std=c++11 -Wall -Wextra -g -o RCCar.o -c RCCar.cpp
-g++ -std=c++11 -Wall -Wextra -g -o main.o -c main.cpp
-g++ -std=c++11 -Wall -Wextra -g -o ultra_sonic.o -c ultra_sonic.cpp
-g++ -std=c++11 -Wall -Wextra -g -o RCCar RCCar.o main.o ultra_sonic.o 
-make: Leaving directory `/Users/josephhellerstein/home/Technical/Arduino/RCCar/Code'
+make: Leaving directory `/Users/josephhellerstein/home/Technical/Arduino/RCCar/RCCar'
  

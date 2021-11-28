@@ -1,8 +1,8 @@
 #include "Arduino.h"
-//#include "ultra_sonic.h"
+#include "ultra_sonic.h"
 #include <stdlib.h>
 #include <time.h>
-//#include "SR04.h"
+#include "SR04.h"
 
 #define CM_PER_INCH 2.54
 #define DISTANCE_MIN 6
@@ -52,5 +52,5 @@ long UltraSonic::getDistance() {
 }   
 // Get speed
 float getSpeed() {
-
+    return 1.0;
 }   
