@@ -20,7 +20,7 @@ OBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)/%.o)
 LIBOBJ = $(LIBDIR)/*.o
 DEP = $(OBJ:$(OBJDIR)/%.o=%.d)
 # UNIX-based OS variables & settings
-RM = rm
+RM = rm -f
 DELOBJ = $(OBJ)
 # Windows OS variables & settings
 DEL = del
@@ -37,6 +37,7 @@ all: $(APPNAME)
 # -L: directory with object files
 # -I: directory with include files
 $(APPNAME): $(OBJ) $(LIBOBJ)
+	rm -f $(LIBDIR)/main.o
 	$(CC) $(CXXFLAGS) -o $@ $^ -I$(LIBDIR) -L$(LIBDIR) $(LDFLAGS)
 
 # Creates the dependecy rules

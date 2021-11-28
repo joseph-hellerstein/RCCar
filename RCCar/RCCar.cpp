@@ -9,6 +9,7 @@ the L293D chip
 #include <time.h>
 #include "ultra_sonic.h"
 #include "Arduino.h"
+#include "SoftwareSerial.h"
 
 
 // Bluetooth pins

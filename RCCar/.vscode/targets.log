@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Sun Nov 28 14:14:33 2021
+# Make data base, printed on Sun Nov 28 14:45:50 2021
 
 # Variables
 
@@ -45,8 +45,8 @@ RM = rm
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile (from `ultra_sonic.d', line 1)
-MAKEFILE_LIST :=  Makefile RCCar.d main.d ultra_sonic.d
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
 # makefile (from `Makefile', line 7)
 CXXFLAGS = -std=c++11 -Wall -Wextra -g
 # environment
@@ -164,7 +164,7 @@ XPC_SERVICE_NAME = application.com.microsoft.VSCode.67166546.67166552.CB29CC6D-B
 # automatic
 +F = $(notdir $+)
 # makefile (from `Makefile', line 11)
-APPNAME = mocks
+APPNAME = mock_RCCar
 # environment
 __CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
 # environment
@@ -196,7 +196,7 @@ TERM = xterm-256color
 # environment
 VSCODE_PID = 429
 # variable set hash-table stats:
-# Load=91/1024=9%, Rehash=0, Collisions=4/155=3%
+# Load=91/1024=9%, Rehash=0, Collisions=3/136=2%
 
 # Pattern-specific Variable Values
 
@@ -204,71 +204,59 @@ VSCODE_PID = 429
 
 # Directories
 
-# . (device 16777221, inode 67562384): 22 files, no impossibilities.
-# /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks (device 16777221, inode 67714962): 21 files, no impossibilities.
+# . (device 16777221, inode 67562384): 14 files, no impossibilities.
+# /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks (device 16777221, inode 67714962): 27 files, no impossibilities.
 
-# 43 files, no impossibilities in 2 directories.
+# 41 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
 %.d: ./%.cpp
-#  commands to execute (from `Makefile', line 43):
+#  commands to execute (from `Makefile', line 45):
 	@$(CPP) $(CFLAGS) $< -MM -MT $(@:%.d=$(OBJDIR)/%.o) >$@
 	
 
 %.o: ./%.cpp
-#  commands to execute (from `Makefile', line 50):
-	$(CC) $(CXXFLAGS) -o $@ -c $<
+#  commands to execute (from `Makefile', line 52):
+	$(CC) $(CXXFLAGS) -o $@ -c $< -I$(LIBDIR)
 	
 
 # 2 implicit rules, 0 (0.0%) terminal.
 
 # Files
 
-# Not a target:
-/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SR04.cpp:
-#  Implicit rule search has been done.
-#  Last modified 2021-11-28 09:07:40
+mock_RCCar: RCCar.o main.o ultra_sonic.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/Arduino.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SR04.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SoftwareSerial.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/main.o
+#  Implicit rule search has not been done.
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-ultra_sonic.o: ultra_sonic.cpp
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `ultra_sonic'
-#  Last modified 2021-11-28 14:11:29
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 50):
-	$(CC) $(CXXFLAGS) -o $@ -c $<
+ 
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+#  commands to execute (from `Makefile', line 40):
+	rm ($LIBDIR)/main.o
+	$(CC) $(CXXFLAGS) -o $@ $^ -I$(LIBDIR) -L$(LIBDIR) $(LDFLAGS)
 	
 
-all: mocks
+# Not a target:
+ultra_sonic.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+all: mock_RCCar
 #  Command-line target.
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
 
 .PHONY: clean cleandep cleanw cleandepw
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-
-# Not a target:
-/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/Arduino.cpp:
- 
-#  Implicit rule search has been done.
-#  Last modified 2021-11-28 09:10:49
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 .SUFFIXES:
@@ -279,7 +267,7 @@ all: mocks
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-11-28 14:11:23
+#  Last modified 2021-11-28 14:45:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -295,60 +283,25 @@ RCCar.cpp:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
-main.cpp:
-#  Implicit rule search has been done.
-#  Last modified 2021-11-28 10:59:18
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SR04.o: /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SR04.cpp
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SR04'
-#  Last modified 2021-11-28 10:46:13
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 50):
-	$(CC) $(CXXFLAGS) -o $@ -c $<
-	
+/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SR04.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 cleanw:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 67):
+#  commands to execute (from `Makefile', line 69):
 	$(DEL) $(WDELOBJ) $(DEP) $(APPNAME)$(EXE)
 	
 
-RCCar.d: RCCar.cpp
-#  A default, MAKEFILES, or -include/sinclude makefile.
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `RCCar'
-#  Last modified 2021-11-28 14:05:31
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 43):
-	@$(CPP) $(CFLAGS) $< -MM -MT $(@:%.d=$(OBJDIR)/%.o) >$@
-	
-
-main.d: main.cpp
-#  A default, MAKEFILES, or -include/sinclude makefile.
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `main'
-#  Last modified 2021-11-28 14:05:30
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 43):
-	@$(CPP) $(CFLAGS) $< -MM -MT $(@:%.d=$(OBJDIR)/%.o) >$@
-	
+# Not a target:
+/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SoftwareSerial.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .DEFAULT:
@@ -356,133 +309,92 @@ main.d: main.cpp
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-ultra_sonic.cpp:
-#  Implicit rule search has been done.
-#  Last modified 2021-11-28 10:47:55
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
 cleandep:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 61):
+#  commands to execute (from `Makefile', line 63):
 	$(RM) $(DEP)
 	
+
+# Not a target:
+/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 cleandepw:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 74):
 	$(DEL) $(DEP)
 	
 
-/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/Arduino.o: /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/Arduino.cpp
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/Arduino'
-#  Last modified 2021-11-28 10:46:13
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 50):
-	$(CC) $(CXXFLAGS) -o $@ -c $<
-	
+# Not a target:
+/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/Arduino.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 clean:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 56):
+#  commands to execute (from `Makefile', line 58):
 	$(RM) $(DELOBJ) $(DEP) $(APPNAME)
-	
-
-ultra_sonic.d: ultra_sonic.cpp
-#  A default, MAKEFILES, or -include/sinclude makefile.
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `ultra_sonic'
-#  Last modified 2021-11-28 14:05:30
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 43):
-	@$(CPP) $(CFLAGS) $< -MM -MT $(@:%.d=$(OBJDIR)/%.o) >$@
 	
 
 RCCar.o: RCCar.cpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `RCCar'
-#  Last modified 2021-11-28 14:11:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 50):
-	$(CC) $(CXXFLAGS) -o $@ -c $<
-	
-
-mocks: RCCar.o main.o ultra_sonic.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/Arduino.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SR04.o
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
-# @ := mocks
+# @ := RCCar.o
 # automatic
 # % := 
 # automatic
-# * := 
+# * := RCCar
 # automatic
-# + := RCCar.o main.o ultra_sonic.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/Arduino.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SR04.o
+# + := RCCar.cpp
 # automatic
 # | := 
 # automatic
-# < := RCCar.o
+# < := RCCar.cpp
 # automatic
-# ^ := RCCar.o main.o ultra_sonic.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/Arduino.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SR04.o
+# ^ := RCCar.cpp
 # automatic
-# ? := RCCar.o main.o ultra_sonic.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/Arduino.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SR04.o
+# ? := RCCar.cpp
 # variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=2/19=11%
-#  commands to execute (from `Makefile', line 38):
-	echo $(LIBOBJ)
-	$(CC) $(CXXFLAGS) -o $@ $^ -I$(LIBDIR) -L$(LIBDIR) $(LDFLAGS)
+# Load=8/32=25%, Rehash=0, Collisions=1/15=7%
+#  commands to execute (from `Makefile', line 52):
+	$(CC) $(CXXFLAGS) -o $@ -c $< -I$(LIBDIR)
 	
 
-main.o: main.cpp
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `main'
-#  Last modified 2021-11-28 14:11:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 50):
-	$(CC) $(CXXFLAGS) -o $@ -c $<
-	
+# Not a target:
+main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # files hash-table stats:
-# Load=23/1024=2%, Rehash=0, Collisions=0/77=0%
+# Load=18/1024=2%, Rehash=0, Collisions=0/49=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
 
 # No general (`VPATH' variable) search path.
 
-# # of strings in strcache: 4
+# # of strings in strcache: 1
 # # of strcache buffers: 1
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
-# strcache free: total = 4058 / max = 4058 / min = 4058 / avg = 4058
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sun Nov 28 14:14:33 2021
+# Finished Make data base on Sun Nov 28 14:45:50 2021
 
  
