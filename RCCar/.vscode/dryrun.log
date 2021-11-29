@@ -1,10 +1,6 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/josephhellerstein/home/Technical/Arduino/RCCar/RCCar'
-g++ -std=c++11 -Wall -Wextra -g -o RCCar.o -c RCCar.cpp -I/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks
+make: Nothing to be done for `all'.
  
-g++ -std=c++11 -Wall -Wextra -g -o main.o -c main.cpp -I/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks
-g++ -std=c++11 -Wall -Wextra -g -o ultra_sonic.o -c ultra_sonic.cpp -I/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks
-rm (IBDIR)/main.o
-g++ -std=c++11 -Wall -Wextra -g -o mock_RCCar RCCar.o main.o ultra_sonic.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/Arduino.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SR04.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SoftwareSerial.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/main.o -I/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks -L/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks 
 make: Leaving directory `/Users/josephhellerstein/home/Technical/Arduino/RCCar/RCCar'
  

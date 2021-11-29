@@ -16,6 +16,7 @@ LIBDIR = /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks
 
 ############## Do not change anything from here downwards! #############
 SRC = $(wildcard $(SRCDIR)/*$(EXT))
+LIB = $(wildcard $(LIBDIR)/*$(EXT))
 OBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)/%.o)
 LIBOBJ = $(LIBDIR)/*.o
 DEP = $(OBJ:$(OBJDIR)/%.o=%.d)
