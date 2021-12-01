@@ -64,7 +64,7 @@ SoftwareSerial mySerial(RX_PIN, TX_PIN); // RX, TX
 
 
 int i;
-int direction = 0;  // -1 backwards; +1 forwards
+bool isForward = TRUE;  //  False: backwards; True: forwards
 
 UltraSonic back_sensor = UltraSonic(ECHO_BK_PIN, TRIG_BK_PIN);
 UltraSonic front_sensor = UltraSonic(ECHO_FT_PIN, TRIG_FT_PIN);
@@ -74,7 +74,7 @@ SensorManager sensor_manager = SensorManager(&front_sensor, &back_sensor, &left_
 
 void forward() {
    Serial.println("Forward!");
-   direction  = 1;
+   isForward  = TRUE;
    digitalWrite(FL_ENABLE_PIN,HIGH); // enable on
    digitalWrite(FL_DIRA_PIN,HIGH); //one way
    digitalWrite(FL_DIRB_PIN,LOW);
@@ -90,7 +90,7 @@ void forward() {
 }
 
 void backward() {
-  direction = -1;
+  isForward = FALSE;
   Serial.println("Backwards!");
   digitalWrite(FL_ENABLE_PIN,HIGH); // enable on
   digitalWrite(FL_DIRA_PIN,LOW); //one way
@@ -114,17 +114,17 @@ void stop() {
 }
 
 void reverse() {
-  if (direction < 0) {
-      forward();
+  if (isForward) {
+      backward();
     }
     else {
-      backward();
+      forward();
     }
     delay(1000);  // Wait for things to change
 }
  
 void setup() {
-  //---set pin direction
+  //---set pin isForward
   pinMode(FL_DIRA_PIN,OUTPUT);
   pinMode(FL_DIRB_PIN,OUTPUT);
   pinMode(FL_ENABLE_PIN,OUTPUT);
@@ -144,20 +144,15 @@ void setup() {
   Serial.begin(9600);
   mySerial.begin(9600);
   mySerial.println("Starting...");
+
   last_report_time = millis();
-  back_sensor.init();
-  front_sensor.init();
-  left_sensor.init();
-  right_sensor.init();
+  sensor_manager.init();
   delay(100);
 }
 
 void loop() {
   Serial.println("loop start");
-  front_sensor.update();
-  back_sensor.update();
-  left_sensor.update();
-  right_sensor.update();
+  sensor_manager.update();
   Serial.println(left_sensor.getDistance());
   Serial.println(right_sensor.getDistance());
   if ((millis() - last_report_time) > REPORT_MILLIS) {
@@ -167,8 +162,7 @@ void loop() {
           mySerial.print(distance_bk);
           mySerial.println(" in");
       }
-  //if (distance_fr < DISTANCE_MIN || distance_bk < DISTANCE_MIN) {
-  if (front_sensor.isTooClose() || back_sensor.isTooClose()) {
+  if (sensor_manager.isTooClose(isForward)) {
     reverse();
   }
   // Wait for command
@@ -181,7 +175,7 @@ void loop() {
     if (inputByte==CMD_STOP){
         Serial.println("Stop!");
         stop();
-        direction = 0;
+        isForward = 0;
     }
     if (inputByte==CMD_BACK){
       backward();

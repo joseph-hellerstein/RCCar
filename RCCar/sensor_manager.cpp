@@ -33,6 +33,15 @@ void SensorManager::init() {
 };
 
 /*-------------------------------------------*/
+/*                 update                      */
+/*-------------------------------------------*/
+void SensorManager::update() {
+    for(int i=0; i < NUM_SENSOR; i++)    {
+        (this->p_sensors[i])->update();
+    }
+};
+
+/*-------------------------------------------*/
 /*             isTooClose                    */
 /*-------------------------------------------*/
 bool SensorManager::isTooClose(bool direction) {

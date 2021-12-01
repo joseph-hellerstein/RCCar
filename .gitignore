@@ -1,2 +1,5 @@
 *.o
 *.d
+~*.xlsx
+.DS_STORE
+exe_*

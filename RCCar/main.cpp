@@ -10,5 +10,5 @@ int main() {
         string line = "Time: " + std::to_string(arduino_mock.getTime()) + " Iteration: " + std::to_string(i) + "\n";
         cout << line;
     }
-    exit(0);
+    return 0;
 }

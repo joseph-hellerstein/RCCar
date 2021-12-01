@@ -8,7 +8,7 @@ CXXFLAGS = -std=c++11 -Wall -Wextra -g
 LDFLAGS = 
 
 # Makefile settings - Can be customized.
-APPNAME = mock_RCCar
+APPNAME = exe_mock
 EXT = .cpp
 SRCDIR = .
 OBJDIR = .
