@@ -1,6 +1,10 @@
 # RCCar
 An Arduino Bluetooth remotely controlled car with various automated assists.
 
+# Directories
+   * Arduino_Run contains files used in the Arduino directory when doing an upload. The ``make`` copies all files needed to run.
+   * RCCar contains C++ codes for the car.
+
 ## Parts
 * chasis
 * breadboards
