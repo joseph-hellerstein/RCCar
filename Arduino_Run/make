@@ -1,0 +1,13 @@
+#!/bin/bash
+# Populates the Arduino run directory
+DIR=~/home/Technical/Arduino/RCCar
+for f in sensor_manager ultra_sonic
+  do
+      rm -f $f.*
+      cp $DIR/RCCar/$f.h .
+      cp $DIR/RCCar/$f.cpp .
+  done
+#
+cp ${DIR}/RCCar/RCCar.cpp  RCCar.ino
+#
+cp $DIR/Arduino_Run/*.* .
