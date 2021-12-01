@@ -6,6 +6,7 @@
 
 #define CM_PER_INCH 2.54
 #define DISTANCE_MIN 6
+#define MIN_ELAPSED_TIME_FOR_UPDATE 50  // ms
 
 
 // Constructor
@@ -51,6 +52,9 @@ long UltraSonic::getDistance() {
   return this->last_distance;
 }   
 // Get speed
-float getSpeed() {
+float UltraSonic::getSpeed() {
+    long time_delta = millis() - this->last_time;
+    this->update();
+    float difference = this->
     return 1.0;
 }   

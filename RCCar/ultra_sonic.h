@@ -15,16 +15,19 @@ class UltraSonic {
       long last_time;  // Time in ms
       float speed;  // inches / ms
       SR04 *sr04;
+      
+      
+  public:
       int echo_pin;
       int trig_pin;
-      long getCurrentDistance();
-  public:
+      
       UltraSonic(int echo_pin, int trig_pin);
       void init();
       void update();
       bool isTooClose();
       float getSpeed();
       long getDistance();
+      long getCurrentDistance();
 };
 
 #endif
