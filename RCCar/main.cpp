@@ -7,8 +7,8 @@ int main() {
     setup();
     for (int i=0; i < 10; i++) {
         setup();
-        string line = "Time: " + std::to_string(arduino_mock.getTime()) + "\n";
+        string line = "Time: " + std::to_string(arduino_mock.getTime()) + " Iteration: " + std::to_string(i) + "\n";
         cout << line;
     }
-        
+    exit(0);
 }
