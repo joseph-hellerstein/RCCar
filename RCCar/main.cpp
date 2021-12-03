@@ -13,6 +13,7 @@ int main() {
     /* Test the RCCar */
     for (int i=0; i < 10; i++) {
         setup();
+        loop();
         string line = "Time: " + std::to_string(arduino_mock.getTime()) + " Iteration: " + std::to_string(i) + "\n";
         cout << line;
     }

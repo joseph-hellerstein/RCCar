@@ -70,7 +70,8 @@ UltraSonic back_sensor = UltraSonic(ECHO_BK_PIN, TRIG_BK_PIN);
 UltraSonic front_sensor = UltraSonic(ECHO_FT_PIN, TRIG_FT_PIN);
 UltraSonic left_sensor = UltraSonic(ECHO_LT_PIN, TRIG_LT_PIN);
 UltraSonic right_sensor = UltraSonic(ECHO_RT_PIN, TRIG_RT_PIN);
-SensorManager sensor_manager = SensorManager(&front_sensor, &back_sensor, &left_sensor, &right_sensor);
+SensorManager sensor_manager = SensorManager(
+  &front_sensor, &back_sensor, &left_sensor, &right_sensor);
 
 void forward() {
    Serial.println("Forward!");

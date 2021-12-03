@@ -2,6 +2,7 @@
 Tests for UltraSonic.
 */
 
+#include "Arduino.h"
 #include "common.h"
 #include "ultra_sonic.h"
 #include "test_ultra_sonic.h"
@@ -24,6 +25,7 @@ class TestUltraSonic{
                 this->trig_pin = trig_pin;
             }
             this->ultra_sonic = UltraSonic(this->echo_pin, this->trig_pin);
+            this->ultra_sonic.init();
         }
 
 };
@@ -39,9 +41,9 @@ void testUltraSonic() {
     assert(ultra_sonic.trig_pin == DEFAULT_TRIG_PIN);
 
     /* getCurrentDistance */
-    assert(ultra_sonic.getCurrentDistance() == 0);
+    assert(ultra_sonic.getCurrentDistance() > 0);
 
     /* getDistance */
     ultra_sonic.update();
-    assert(ultra_sonic.getDistance() == 0);
+    assert(ultra_sonic.getDistance() > 0);
 };

@@ -15,6 +15,7 @@ class UltraSonic {
       long last_time;  // Time in ms
       float speed;  // inches / ms
       SR04 *sr04;
+      bool isInit = FALSE;
       
       
   public:

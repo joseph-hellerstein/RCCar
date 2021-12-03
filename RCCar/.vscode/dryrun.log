@@ -1,6 +1,14 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/josephhellerstein/home/Technical/Arduino/RCCar/RCCar'
-make: Nothing to be done for `all'.
- 
+g++ -std=c++11 -Wall -Wextra -g -o RCCar.o -c RCCar.cpp -I/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks
+g++ -std=c++11 -Wall -Wextra -g -o main.o -c main.cpp -I/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks
+g++ -std=c++11 -Wall -Wextra -g -o sensor_manager.o -c sensor_manager.cpp -I/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks
+g++ -std=c++11 -Wall -Wextra -g -o test_ultra_sonic.o -c test_ultra_sonic.cpp -I/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks
+g++ -std=c++11 -Wall -Wextra -g -o ultra_sonic.o -c ultra_sonic.cpp -I/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks
+g++ -std=c++11 -Wall -Wextra -g -o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SoftwareSerial.o -c /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SoftwareSerial.cpp -I/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks
+g++ -std=c++11 -Wall -Wextra -g -o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/Arduino.o -c /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/Arduino.cpp -I/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks
+g++ -std=c++11 -Wall -Wextra -g -o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SR04.o -c /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SR04.cpp -I/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks
+rm -f /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/main.o
+g++ -std=c++11 -Wall -Wextra -g -o exe_mock RCCar.o main.o sensor_manager.o test_ultra_sonic.o ultra_sonic.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SoftwareSerial.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/Arduino.o /Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/SR04.o -I/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks -L/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks 
 make: Leaving directory `/Users/josephhellerstein/home/Technical/Arduino/RCCar/RCCar'
  
