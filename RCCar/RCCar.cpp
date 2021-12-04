@@ -84,20 +84,6 @@ void forward() {
    fr_wheel.goForward();
    bl_wheel.goForward();
    br_wheel.goForward();
-   /*
-   digitalWrite(FL_ENABLE_PIN,HIGH); // enable on
-   digitalWrite(FL_DIRA_PIN,HIGH); //one way
-   digitalWrite(FL_DIRB_PIN,LOW);
-   digitalWrite(FR_ENABLE_PIN,HIGH); // enable on
-   digitalWrite(FR_DIRA_PIN,HIGH); //one way
-   digitalWrite(FR_DIRB_PIN,LOW);
-   digitalWrite(BL_ENABLE_PIN,HIGH); // enable on
-   digitalWrite(BL_DIRA_PIN,HIGH); //one way
-   digitalWrite(BL_DIRB_PIN,LOW);
-   digitalWrite(BR_ENABLE_PIN,HIGH); // enable on
-   digitalWrite(BR_DIRA_PIN,HIGH); //one way
-   digitalWrite(BR_DIRB_PIN,LOW);
-   */
 }
 
 void backward() {
@@ -107,20 +93,6 @@ void backward() {
   fr_wheel.goBackwards();
   bl_wheel.goBackwards();
   br_wheel.goBackwards();
-  /*
-  digitalWrite(FL_ENABLE_PIN,HIGH); // enable on
-  digitalWrite(FL_DIRA_PIN,LOW); //one way
-  digitalWrite(FL_DIRB_PIN,HIGH);
-  digitalWrite(FR_ENABLE_PIN,HIGH); // enable on
-  digitalWrite(FR_DIRA_PIN,LOW); //one way
-  digitalWrite(FR_DIRB_PIN,HIGH);
-  digitalWrite(BL_ENABLE_PIN,HIGH); // enable on
-  digitalWrite(BL_DIRA_PIN,LOW); //one way
-  digitalWrite(BL_DIRB_PIN,HIGH);
-  digitalWrite(BR_ENABLE_PIN,HIGH); // enable on
-  digitalWrite(BR_DIRA_PIN,LOW); //one way
-  digitalWrite(BR_DIRB_PIN,HIGH);
-  */
 }
 
 void stop() {
@@ -128,12 +100,6 @@ void stop() {
   fr_wheel.stop();
   bl_wheel.stop();
   br_wheel.stop();
-  /*
-  digitalWrite(FL_ENABLE_PIN,LOW); // enable off
-  digitalWrite(FR_ENABLE_PIN,LOW); // enable off
-  digitalWrite(BL_ENABLE_PIN,LOW); // enable off
-  digitalWrite(BR_ENABLE_PIN,LOW); // enable off
-  */
 }
 
 void reverse() {
@@ -152,24 +118,6 @@ void setup() {
   fr_wheel.init();
   bl_wheel.init();
   br_wheel.init();
-  /*
-  pinMode(FL_DIRA_PIN,OUTPUT);
-  pinMode(FL_DIRB_PIN,OUTPUT);
-  pinMode(FL_ENABLE_PIN,OUTPUT);
-  analogWrite(FL_ENABLE_PIN,255);
-  pinMode(FR_DIRA_PIN,OUTPUT);
-  pinMode(FR_DIRB_PIN,OUTPUT);
-  pinMode(FR_ENABLE_PIN,OUTPUT);
-  analogWrite(FR_ENABLE_PIN,255);
-  pinMode(BL_DIRA_PIN,OUTPUT);
-  pinMode(BL_DIRB_PIN,OUTPUT);
-  pinMode(BL_ENABLE_PIN,OUTPUT);
-  analogWrite(BL_ENABLE_PIN,255);
-  pinMode(BR_DIRA_PIN,OUTPUT);
-  pinMode(BR_DIRB_PIN,OUTPUT);
-  pinMode(BR_ENABLE_PIN,OUTPUT);
-  analogWrite(BR_ENABLE_PIN,255);
-  */
   Serial.begin(9600);
   mySerial.begin(9600);
   mySerial.println("Starting...");
