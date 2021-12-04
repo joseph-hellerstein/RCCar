@@ -10,6 +10,7 @@ the L293D chip
 #include "SR04.h"
 #include "ultra_sonic.h"
 #include "sensor_manager.h"
+#include "wheel.h"
 
 
 // Bluetooth pins
@@ -60,7 +61,10 @@ long distance_bk;
 long last_report_time;
 
 SoftwareSerial mySerial(RX_PIN, TX_PIN); // RX, TX
-
+Wheel fl_wheel = Wheel(FL_DIRA_PIN, FL_DIRB_PIN, FL_ENABLE_PIN);
+Wheel fr_wheel = Wheel(FR_DIRA_PIN, FR_DIRB_PIN, FR_ENABLE_PIN);
+Wheel bl_wheel = Wheel(BL_DIRA_PIN, BL_DIRB_PIN, BL_ENABLE_PIN);
+Wheel br_wheel = Wheel(BR_DIRA_PIN, BR_DIRB_PIN, BR_ENABLE_PIN);
 
 
 int i;
@@ -76,6 +80,11 @@ SensorManager sensor_manager = SensorManager(
 void forward() {
    Serial.println("Forward!");
    isForward  = TRUE;
+   fl_wheel.goForward();
+   fr_wheel.goForward();
+   bl_wheel.goForward();
+   br_wheel.goForward();
+   /*
    digitalWrite(FL_ENABLE_PIN,HIGH); // enable on
    digitalWrite(FL_DIRA_PIN,HIGH); //one way
    digitalWrite(FL_DIRB_PIN,LOW);
@@ -88,11 +97,17 @@ void forward() {
    digitalWrite(BR_ENABLE_PIN,HIGH); // enable on
    digitalWrite(BR_DIRA_PIN,HIGH); //one way
    digitalWrite(BR_DIRB_PIN,LOW);
+   */
 }
 
 void backward() {
   isForward = FALSE;
   Serial.println("Backwards!");
+  fl_wheel.goBackwards();
+  fr_wheel.goBackwards();
+  bl_wheel.goBackwards();
+  br_wheel.goBackwards();
+  /*
   digitalWrite(FL_ENABLE_PIN,HIGH); // enable on
   digitalWrite(FL_DIRA_PIN,LOW); //one way
   digitalWrite(FL_DIRB_PIN,HIGH);
@@ -105,13 +120,20 @@ void backward() {
   digitalWrite(BR_ENABLE_PIN,HIGH); // enable on
   digitalWrite(BR_DIRA_PIN,LOW); //one way
   digitalWrite(BR_DIRB_PIN,HIGH);
+  */
 }
 
 void stop() {
+  fl_wheel.stop();
+  fr_wheel.stop();
+  bl_wheel.stop();
+  br_wheel.stop();
+  /*
   digitalWrite(FL_ENABLE_PIN,LOW); // enable off
   digitalWrite(FR_ENABLE_PIN,LOW); // enable off
   digitalWrite(BL_ENABLE_PIN,LOW); // enable off
   digitalWrite(BR_ENABLE_PIN,LOW); // enable off
+  */
 }
 
 void reverse() {
@@ -126,6 +148,11 @@ void reverse() {
  
 void setup() {
   //---set pin isForward
+  fl_wheel.init();
+  fr_wheel.init();
+  bl_wheel.init();
+  br_wheel.init();
+  /*
   pinMode(FL_DIRA_PIN,OUTPUT);
   pinMode(FL_DIRB_PIN,OUTPUT);
   pinMode(FL_ENABLE_PIN,OUTPUT);
@@ -142,6 +169,7 @@ void setup() {
   pinMode(BR_DIRB_PIN,OUTPUT);
   pinMode(BR_ENABLE_PIN,OUTPUT);
   analogWrite(BR_ENABLE_PIN,255);
+  */
   Serial.begin(9600);
   mySerial.begin(9600);
   mySerial.println("Starting...");

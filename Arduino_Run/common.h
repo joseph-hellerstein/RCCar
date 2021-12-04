@@ -3,8 +3,7 @@
 #define IS_ARDUINO
 #endif
 
-#include <string>
-#include <iostream>
+#include <string.h>
 #include <time.h>
 #include <assert.h>
 #include <stdlib.h>
