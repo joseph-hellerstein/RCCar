@@ -1,5 +1,5 @@
 /*
-A SensorManager knows the wheels on a car. It handles wheel initialization, and any calculation
+A WheelManager knows the wheels on a car. It handles wheel initialization, and any calculation
 that involves multiple wheels.
 */
 #include "common.h"
@@ -11,7 +11,8 @@ using namespace std;
 /*-------------------------------------------*/
 /*                 Constructor               */
 /*-------------------------------------------*/
-SensorManager::SensorManager(Wheel *p_fl_wheel, Wheel *p_fr_wheel, 
+WheelManager::WheelManager(Wheel *p_fl_wheel, 
+    Wheel *p_fr_wheel, 
     Wheel *p_bl_wheel, Wheel *p_br_wheel) {
         this->p_fl_wheel = p_fl_wheel;
         this->p_fr_wheel = p_fr_wheel;
@@ -26,8 +27,35 @@ SensorManager::SensorManager(Wheel *p_fl_wheel, Wheel *p_fr_wheel,
 /*-------------------------------------------*/
 /*                 init                      */
 /*-------------------------------------------*/
-void SensorManager::init() {
+void WheelManager::init() {
     for(int i=0; i < NUM_WHEEL; i++)    {
         (this->p_wheels[i])->init();
+    }
+};
+
+/*-------------------------------------------*/
+/*                 goForward                 */
+/*-------------------------------------------*/
+void WheelManager::goForward() {
+    for(int i=0; i < NUM_WHEEL; i++)    {
+        (this->p_wheels[i])->goForward();
+    }
+};
+
+/*-------------------------------------------*/
+/*                goBackwards                */
+/*-------------------------------------------*/
+void WheelManager::goBackwards() {
+    for(int i=0; i < NUM_WHEEL; i++)    {
+        (this->p_wheels[i])->goBackwards();
+    }
+};
+
+/*-------------------------------------------*/
+/*                stop                       */
+/*-------------------------------------------*/
+void WheelManager::stop() {
+    for(int i=0; i < NUM_WHEEL; i++)    {
+        (this->p_wheels[i])->stop();
     }
 };

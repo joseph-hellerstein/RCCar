@@ -1,7 +1,7 @@
 #!/bin/bash
 # Populates the Arduino run directory
 DIR=~/home/Technical/Arduino/RCCar
-for f in sensor_manager ultra_sonic wheel
+for f in sensor_manager ultra_sonic wheel wheel_manager
   do
       rm -f $f.*
       cp $DIR/RCCar/$f.h .
@@ -11,3 +11,4 @@ for f in sensor_manager ultra_sonic wheel
 cp ${DIR}/RCCar/RCCar.cpp  RCCar.ino
 #
 cp $DIR/Arduino_Run/*.* .
+cp $DIR/Arduino_Run/make .

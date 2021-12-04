@@ -1,3 +1,6 @@
+#ifndef wheel_h
+#define wheel_h
+
 #define SPEED_STOP 0
 #define SPEED_LOW 100
 #define SPEED_MED 200
@@ -19,3 +22,4 @@ class Wheel {
         int getSpeed();
         void stop();
 };
+#endif

@@ -6,7 +6,7 @@ using namespace std;
 
 #define NUM_WHEEL 4
 
-class SensorManager {
+class WheelManager {
     public:
         Wheel * p_wheels[NUM_WHEEL];
         Wheel * p_fl_wheel; // front left
@@ -14,11 +14,12 @@ class SensorManager {
         Wheel * p_bl_wheel; // back left
         Wheel * p_br_wheel; // back right
 
-        SensorManager(Wheel *p_fl_wheel, Wheel *p_fr_wheel,
+        WheelManager(Wheel *p_fl_wheel, Wheel *p_fr_wheel,
             Wheel *p_bl_wheel, Wheel *br_wheel);
         void init();
-        void goForwards();
+        void goForward();
         void goBackwards();
+        void stop();
 
 };
 #endif

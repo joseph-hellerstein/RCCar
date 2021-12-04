@@ -10,6 +10,7 @@ the L293D chip
 #include "SR04.h"
 #include "ultra_sonic.h"
 #include "sensor_manager.h"
+#include "wheel_manager.h"
 #include "wheel.h"
 
 
@@ -65,6 +66,8 @@ Wheel fl_wheel = Wheel(FL_DIRA_PIN, FL_DIRB_PIN, FL_ENABLE_PIN);
 Wheel fr_wheel = Wheel(FR_DIRA_PIN, FR_DIRB_PIN, FR_ENABLE_PIN);
 Wheel bl_wheel = Wheel(BL_DIRA_PIN, BL_DIRB_PIN, BL_ENABLE_PIN);
 Wheel br_wheel = Wheel(BR_DIRA_PIN, BR_DIRB_PIN, BR_ENABLE_PIN);
+WheelManager wheel_manager = WheelManager(&fl_wheel,
+    &fr_wheel, &bl_wheel, &br_wheel);
 
 
 int i;
@@ -80,26 +83,18 @@ SensorManager sensor_manager = SensorManager(
 void forward() {
    Serial.println("Forward!");
    isForward  = TRUE;
-   fl_wheel.goForward();
-   fr_wheel.goForward();
-   bl_wheel.goForward();
-   br_wheel.goForward();
+   wheel_manager.goForward();
 }
 
 void backward() {
   isForward = FALSE;
   Serial.println("Backwards!");
-  fl_wheel.goBackwards();
-  fr_wheel.goBackwards();
-  bl_wheel.goBackwards();
-  br_wheel.goBackwards();
+  wheel_manager.goBackwards();
 }
 
 void stop() {
-  fl_wheel.stop();
-  fr_wheel.stop();
-  bl_wheel.stop();
-  br_wheel.stop();
+  Serial.println("Stopped!");
+  wheel_manager.stop();
 }
 
 void reverse() {
@@ -114,14 +109,10 @@ void reverse() {
  
 void setup() {
   //---set pin isForward
-  fl_wheel.init();
-  fr_wheel.init();
-  bl_wheel.init();
-  br_wheel.init();
+  wheel_manager.init();
   Serial.begin(9600);
   mySerial.begin(9600);
-  mySerial.println("Starting...");
-
+  mySerial.println("\n\nStarting...");
   last_report_time = millis();
   sensor_manager.init();
   delay(100);
@@ -159,4 +150,3 @@ void loop() {
     }
   }
 }
-
