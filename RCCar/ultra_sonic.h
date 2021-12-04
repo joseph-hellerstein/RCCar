@@ -6,6 +6,7 @@
 #ifndef ultra_sonic_h
 #define ultra_sonic_h
 
+#include "common.h"
 #include "Arduino.h"
 #include "SR04.h"
 

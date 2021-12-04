@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "SR04.h"
+#include <assert.h>
 #include "common.h"
 
 #define CM_PER_INCH 2.54
