@@ -3,6 +3,7 @@
 #include "sensor_manager.h"
 #include "test_ultra_sonic.h"
 #include "test_sensor_manager.h"
+#include "test_wheel.h"
 #include <iostream>
 using namespace std;
 
@@ -11,6 +12,7 @@ using namespace std;
 int main() {
     testUltraSonic();
     testSensorManager();
+    testWheel();
     /* Test the RCCar */
     setup();
     for (int i=0; i < 10; i++) {

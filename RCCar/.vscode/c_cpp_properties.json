@@ -5,8 +5,6 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks/**",
-                "/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks",
-                "/Users/josephhellerstein/home/Technical/Arduino/arduino_mocks"
             ],
             "defines": [],
             "macFrameworkPath": [

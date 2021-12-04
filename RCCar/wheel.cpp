@@ -42,6 +42,7 @@ void Wheel::setSpeed(int arg_speed) {
 
 void Wheel::stop() {
     digitalWrite(this->enable_pin, SPEED_STOP);
+    this->setSpeed(SPEED_STOP);
 }
 
 int Wheel::getSpeed() {
