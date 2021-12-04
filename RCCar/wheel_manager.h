@@ -2,7 +2,6 @@
 #define wheel_manager_h
 
 #include "wheel.h"
-using namespace std;
 
 #define NUM_WHEEL 4
 

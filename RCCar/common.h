@@ -6,7 +6,7 @@
 
 // Common symbols
 #define TRUE 1==1
-#define FASLE 1==0
+#define FALSE 1==0
 #define NULL_INT -1
 #define NULL_STRING ""
 #define LOW 1  // Low value for digital signal
